@@ -1,0 +1,12 @@
+.container_page_home {
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+  padding: 40px;
+  .viewRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+}

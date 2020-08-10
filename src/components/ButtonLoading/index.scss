@@ -1,0 +1,33 @@
+$black-020202: #7d5a5a;
+$gray-383838: #d9adad;
+$white: #fff;
+
+@mixin background($position, $color1, $color2) {
+  background-image: linear-gradient(to $position, $color1, $color2);
+}
+
+.btnLoading {
+  .bx--btn--primary {
+    color: $white;
+    @include background(right, $gray-383838, $black-020202);
+    box-sizing: border-box;
+    &:active,
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      @include background(right, $black-020202, $gray-383838);
+    }
+
+    &:focus {
+      border: none;
+      background-color: $black-020202;
+      color: $white;
+    }
+  }
+
+  .bx--inline-loading {
+    width: 10px;
+  }
+}
