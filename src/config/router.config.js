@@ -7,6 +7,7 @@ import Notfound from "../pages/404Page";
 import ReviewUser from "../pages/User/ReviewUser";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import Detail from "../pages/Detail";
 import ForgotPassword from "../pages/ForgotPassword";
 // import Contact from "../pages/Contact";
 const Contact = lazy(() => import("../pages/Contact"));
@@ -32,6 +33,18 @@ const routes = [
     exact: false,
     layout: BasicLayout,
     component: ReviewUser
+  },
+  {
+    path: "/detail",
+    exact: true,
+    layout: BasicLayout,
+    component: Detail
+  },
+  {
+    path: "/detail/:id",
+    exact: false,
+    layout: BasicLayout,
+    component: Detail
   },
   {
     path: "/contact",

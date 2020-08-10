@@ -8,7 +8,7 @@ class ReviewUser extends React.Component {
     return (
       <div style={{ backgroundColor: "#fff" }}>
         <TitlePage title={id} />
-        <h1>Review User ID: {id}</h1>
+        <h1>User ID: {id}</h1>
       </div>
     );
   }

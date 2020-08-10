@@ -3,114 +3,6 @@ import { connect } from "react-redux";
 import TitlePage from "../../components/TitlePage";
 import "./index.scss";
 
-const dummyListVideo = [
-  {
-    title: "Video 1",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "123",
-    url: ""
-  },
-  {
-    title: "Video 1",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "456",
-    url: ""
-  },
-  {
-    title: "Video 2",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "789",
-    url: ""
-  },
-  {
-    title: "Video 3",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "111",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "22222",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "242452",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "42452452452",
-    url: ""
-  },
-  {
-    title: "Video 1",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "78578575",
-    url: ""
-  },
-  {
-    title: "Video 1",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "78578566",
-    url: ""
-  },
-  {
-    title: "Video 2",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "141747",
-    url: ""
-  },
-  {
-    title: "Video 3",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "96939",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "357375357",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "0000042",
-    url: ""
-  },
-  {
-    title: "Video 4",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "4524524527881",
-    url: ""
-  },
-  {
-    title: "Video 1",
-    img:
-      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
-    _id: "774747485869",
-    url: ""
-  }
-];
-
 class Home extends Component {
   // componentDidMount() {
   //   const { getAllProduct } = this.props;
@@ -129,20 +21,26 @@ class Home extends Component {
     clearData();
   }
   render() {
-    // const {
-    //   loading,
-    //   listProduct,
-    //   messageError,
-    //   clearData,
-    //   getAllProduct
-    // } = this.props;
+    const {
+      // loading,
+      // listProduct,
+      // messageError,
+      // clearData,
+      // getAllProduct
+      dummyListVideo,
+      history
+    } = this.props;
     return (
       <div className="container_page_home">
         <TitlePage title="Home" />
         <div className="bx--grid">
           <div className="bx--row">
             {dummyListVideo.map(item => (
-              <div className="bx--col" key={item._id}>
+              <div
+                className="bx--col"
+                key={item._id}
+                onClick={() => history.push(`detail/${item._id}`)}
+              >
                 <div className="item__video">
                   <img
                     src={item.img}
@@ -161,11 +59,17 @@ class Home extends Component {
 }
 
 const mapStateToProps = ({
-  products: { loading, listProduct = [], messageError = "" } = {}
+  products: {
+    loading,
+    listProduct = [],
+    messageError = "",
+    dummyListVideo
+  } = {}
 }) => ({
   loading,
   listProduct,
-  messageError
+  messageError,
+  dummyListVideo
 });
 
 const mapDispatchToProps = dispatch => ({

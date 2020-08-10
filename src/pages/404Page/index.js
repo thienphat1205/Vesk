@@ -7,16 +7,22 @@ class NotFoundPage extends Component {
       <div
         style={{
           backgroundColor: "#fff",
+          width: "76%",
           padding: "30px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         <TitlePage title="404 Page Not Found" />
         <h1>Not Found</h1>
-        <img src="https://static.mediacdn.vn/images/4041.gif" alt="404" />
+        <img
+          src="https://static.mediacdn.vn/images/4041.gif"
+          alt="404"
+          width="100%"
+          height="auto"
+        />
       </div>
     );
   }
