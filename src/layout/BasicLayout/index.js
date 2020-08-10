@@ -9,12 +9,6 @@ import { connect } from "react-redux";
 import "./index.scss";
 
 class BasicLayout extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      widthMenu: true
-    };
-  }
   componentDidMount() {
     const { getMyInfo } = this.props;
     getMyInfo();
@@ -33,15 +27,14 @@ class BasicLayout extends Component {
   };
 
   handleMenu = () => {
-    const { widthMenu } = this.state;
-    this.setState({
+    const { widthMenu, setDataUserReducer } = this.props;
+    setDataUserReducer({
       widthMenu: !widthMenu
     });
   };
 
   render() {
-    const { children, history, expiredToken, myInfo } = this.props;
-    const { widthMenu } = this.state;
+    const { children, history, expiredToken, myInfo, widthMenu } = this.props;
     const widthMenuLeft = widthMenu ? "225px" : "90px";
     // const { token } = getToken();
     // if (!token) {
@@ -57,8 +50,11 @@ class BasicLayout extends Component {
             handleMenu={this.handleMenu}
           />
           <div className="body">
-            <div className="leftPanel" style={{ width: widthMenuLeft }}>
-              <div className="menu">
+            <div
+              className="leftPanel"
+              style={{ width: widthMenuLeft, backgroundColor: "red" }}
+            >
+              <div className="menu" style={{ width: widthMenuLeft }}>
                 <NavLink
                   exact
                   activeClassName="leftPanel__itemMenu--active"
@@ -87,7 +83,16 @@ class BasicLayout extends Component {
               </div>
             </div>
             <div style={{ width: "100%" }}>
-              <div className="content">{children}</div>
+              <div className="content">
+                <div style={{ width: "100%" }}>{children}</div>
+                <div className="ads">
+                  <img
+                    src={require("../../images/ad-tall-226x455-01.jpg")}
+                    alt="ads"
+                    className="ads__img"
+                  />
+                </div>
+              </div>
               <Footer />
             </div>
           </div>
@@ -110,9 +115,12 @@ class BasicLayout extends Component {
   }
 }
 
-const mapStateToProps = ({ user: { expiredToken, myInfo = {} } = {} }) => ({
+const mapStateToProps = ({
+  user: { expiredToken, myInfo = {}, widthMenu } = {}
+}) => ({
   expiredToken,
-  myInfo
+  myInfo,
+  widthMenu
 });
 
 const mapDispatchToProps = dispatch => ({

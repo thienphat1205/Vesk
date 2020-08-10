@@ -5,14 +5,12 @@ import { connect } from "react-redux";
 class Profile extends Component {
   render() {
     const {
-      myInfo: { firstName = "", lastName = "" } = {},
+      myInfo: { firstName = "", lastName = "" } = {}
       // history,
     } = this.props;
     const fullName = `${firstName} ${lastName}`;
     return (
-      <div
-        style={{ backgroundColor: "#faf2f2", width: "100%", height: "500px" }}
-      >
+      <div style={{ backgroundColor: "#fff", width: "76%", height: "500px" }}>
         <TitlePage title={`${fullName} | Profile`} />
         <h1>This is profile {fullName}</h1>
       </div>
@@ -20,10 +18,10 @@ class Profile extends Component {
   }
 }
 const mapStateToProps = ({ user: { myInfo = {} } = {} }) => ({
-  myInfo,
+  myInfo
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   // getMyInfo: () => dispatch({ type: "GET_MY_INFO" }),
 });
 

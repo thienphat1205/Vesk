@@ -1,12 +1,32 @@
 .container_page_home {
   background-color: #fff;
-  width: 100%;
-  height: 100vh;
-  padding: 40px;
-  .viewRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 20px;
+  width: 76%;
+  // min-width: 276px;
+  height: auto;
+  .bx--grid {
+    padding-left: 5rem;
+  }
+  .bx--row {
+    margin-top: -1rem;
+    .bx--col {
+      min-width: 210px;
+      max-width: 210px;
+      height: 120px;
+      margin: 30px 30px 0px 0px;
+      .item__video {
+        &__img {
+          width: 100%;
+          height: auto;
+        }
+        &__title {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        &:hover {
+          outline: 0.5rem solid #ff516b;
+          transform: scale(1.05);
+        }
+      }
+    }
   }
 }

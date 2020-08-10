@@ -4,6 +4,129 @@ import TitlePage from "../../components/TitlePage";
 // import "@carbon/grid/scss/grid";
 import "./index.scss";
 
+const dummyListVideo = [
+  {
+    title: "Video 1",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 1",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 2",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 3",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 1",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 1",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 2",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 3",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 4",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  },
+  {
+    title: "Video 1",
+    img:
+      "https://i.ytimg.com/vi/2KGtXzIb8l8/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB9HklpOFDAoKq0-ubIVoKzdbUMiw",
+    time: "",
+    views: "",
+    release: ""
+  }
+];
+
 class Home extends Component {
   // componentDidMount() {
   //   const { getAllProduct } = this.props;
@@ -32,21 +155,22 @@ class Home extends Component {
     return (
       <div className="container_page_home">
         <TitlePage title="Home" />
-        {/* <h1>Home page</h1>
-        <p>{messageError}</p>
-        <p>listProduct length: {loading ? "Loading..." : listProduct.length}</p>
-        <div className="viewRow">
-          <div onClick={() => clearData()}>Clear data</div>
-          <div onClick={this._setData}>Set data</div>
-          <div onClick={() => getAllProduct()}>Fetch data</div>
-        </div> */}
         <div class="bx--grid">
           <div class="bx--row">
-            <div class="bx--col">1 of 4</div>
-            <div class="bx--col">2 of 4</div>
-            <div class="bx--col">3 of 4</div>
-            <div class="bx--col">4 of 4</div>
-          </div>
+            {dummyListVideo.map(item => (
+              <div class="bx--col">
+                <div className="item__video">
+                  <img
+                    src={item.img}
+                    alt={`Video ${item.title}`}
+                    className="item__video__img"
+                  />
+                  <p className="item__video__title">{item.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>{" "}
+                    
         </div>
       </div>
     );
