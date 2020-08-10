@@ -2,6 +2,7 @@ import React from "react";
 import TitlePage from "../../components/TitlePage";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import "./index.scss";
 
 class Detail extends React.Component {
   constructor(props) {
@@ -22,7 +23,41 @@ class Detail extends React.Component {
         itemVideo: videoById
       });
     }
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      window.onYouTubeIframeAPIReady = this.loadVideo;
+
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    } else {
+      this.loadVideo();
+    }
   }
+  loadVideo = () => {
+    this.player = new window.YT.Player(`player`, {
+      videoId: "KjvM4WJcedA",
+      events: {
+        onReady: this.onPlayerReady,
+        onStateChange: this.onPlayerStateChange
+      }
+    });
+  };
+
+  onPlayerReady = event => {
+    event.target.playVideo();
+  };
+
+  onPlayerStateChange = event => {
+    if (event.data === window.YT.PlayerState.PLAYING) {
+      setTimeout(this.stopVideo, 10000);
+    }
+  };
+  stopVideo = () => {
+    this.player.stopVideo();
+    // alert("You have watched 10s");
+  };
+
   render() {
     const { match: { params: { id = "" } = {} } = {} } = this.props;
     const { itemVideo } = this.state;
@@ -30,17 +65,17 @@ class Detail extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <div style={{ backgroundColor: "#fff" }}>
+      <div className="container__detail">
         <TitlePage title={itemVideo.title || "Video Not Found"} />
-        <h1>Video ID: {id}</h1>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/KjvM4WJcedA"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <div id="player" className="container__detail__player" />
+        <div className="line" />
+        <div className="container__detail__comment">
+          <div className="container__detail__comment__title">COMMENTS</div>
+          <div className="container__detail__comment__compose">
+            Compose comment
+          </div>
+          <div>List comments</div>
+        </div>
       </div>
     );
   }
