@@ -7,20 +7,22 @@ import "./index.scss";
 class Detail extends React.Component {
   constructor(props) {
     super(props);
+    this.isComponentMounted = false;
     this.state = {
-      itemVideo: {}
+      itemVideo: {},
     };
   }
   componentDidMount() {
+    this.isComponentMounted = true;
     // Fetch video by Id
     const {
       match: { params: { id = "" } = {} } = {},
-      dummyListVideo
+      dummyListVideo,
     } = this.props;
-    const videoById = dummyListVideo.find(element => element._id === id);
+    const videoById = dummyListVideo.find((element) => element._id === id);
     if (videoById) {
       this.setState({
-        itemVideo: videoById
+        itemVideo: videoById,
       });
     }
     if (!window.YT) {
@@ -34,28 +36,35 @@ class Detail extends React.Component {
       this.loadVideo();
     }
   }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
+  }
+
   loadVideo = () => {
     this.player = new window.YT.Player(`player`, {
       videoId: "KjvM4WJcedA",
       events: {
         onReady: this.onPlayerReady,
-        onStateChange: this.onPlayerStateChange
-      }
+        onStateChange: this.onPlayerStateChange,
+      },
     });
   };
 
-  onPlayerReady = event => {
+  onPlayerReady = (event) => {
     event.target.playVideo();
   };
 
-  onPlayerStateChange = event => {
+  onPlayerStateChange = (event) => {
     if (event.data === window.YT.PlayerState.PLAYING) {
       setTimeout(this.stopVideo, 10000);
     }
   };
   stopVideo = () => {
     this.player.stopVideo();
-    // alert("You have watched 10s");
+    if (this.isComponentMounted) {
+      alert("You have watched 10s");
+    }
   };
 
   render() {
@@ -67,7 +76,9 @@ class Detail extends React.Component {
     return (
       <div className="container__detail">
         <TitlePage title={itemVideo.title || "Video Not Found"} />
-        <div id="player" className="container__detail__player" />
+        <div className="container__detail__view__player">
+          <div id="player" className="container__detail__player" />
+        </div>
         <div className="line" />
         <div className="container__detail__comment">
           <div className="container__detail__comment__title">COMMENTS</div>
@@ -81,10 +92,10 @@ class Detail extends React.Component {
   }
 }
 const mapStateToProps = ({ products: { dummyListVideo } = {} }) => ({
-  dummyListVideo
+  dummyListVideo,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   // getAllProduct: () => dispatch({ type: "GET_ALL_PRODUCT" }),
   // clearData: () => dispatch({ type: "CLEAR_DATA" }),
   // setData: data => dispatch({ type: "SET_STATE_REDUCER", data })

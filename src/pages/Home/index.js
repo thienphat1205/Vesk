@@ -12,7 +12,7 @@ class Home extends Component {
   _setData = () => {
     const { setData } = this.props;
     setData({
-      messageError: "Hmmm..."
+      messageError: "Hmmm...",
     });
   };
 
@@ -28,30 +28,28 @@ class Home extends Component {
       // clearData,
       // getAllProduct
       dummyListVideo,
-      history
+      history,
     } = this.props;
     return (
       <div className="container_page_home">
         <TitlePage title="Home" />
-        <div className="bx--grid">
-          <div className="bx--row">
-            {dummyListVideo.map(item => (
-              <div
-                className="bx--col"
-                key={item._id}
-                onClick={() => history.push(`detail/${item._id}`)}
-              >
-                <div className="item__video">
-                  <img
-                    src={item.img}
-                    alt={`Video ${item.title}`}
-                    className="item__video__img"
-                  />
-                  <p className="item__video__title">{item.title}</p>
-                </div>
+        <div className="bx--row" style={{ marginLeft: "2rem" }}>
+          {dummyListVideo.map((item) => (
+            <div
+              className="bx--col"
+              key={item._id}
+              onClick={() => history.push(`detail/${item._id}`)}
+            >
+              <div className="item__video">
+                <img
+                  src={item.img}
+                  alt={`Video ${item.title}`}
+                  className="item__video__img"
+                />
+                <p className="item__video__title">{item.title}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -63,19 +61,19 @@ const mapStateToProps = ({
     loading,
     listProduct = [],
     messageError = "",
-    dummyListVideo
-  } = {}
+    dummyListVideo,
+  } = {},
 }) => ({
   loading,
   listProduct,
   messageError,
-  dummyListVideo
+  dummyListVideo,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getAllProduct: () => dispatch({ type: "GET_ALL_PRODUCT" }),
   clearData: () => dispatch({ type: "CLEAR_DATA" }),
-  setData: data => dispatch({ type: "SET_STATE_REDUCER", data })
+  setData: (data) => dispatch({ type: "SET_STATE_REDUCER", data }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

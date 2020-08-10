@@ -17,11 +17,11 @@ class BasicLayout extends Component {
   hideModal = () => {
     const { setDataUserReducer } = this.props;
     setDataUserReducer({
-      expiredToken: false
+      expiredToken: false,
     });
   };
 
-  _logout = history => {
+  _logout = (history) => {
     const { logout } = this.props;
     logout(history);
   };
@@ -29,7 +29,7 @@ class BasicLayout extends Component {
   handleMenu = () => {
     const { widthMenu, setDataUserReducer } = this.props;
     setDataUserReducer({
-      widthMenu: !widthMenu
+      widthMenu: !widthMenu,
     });
   };
 
@@ -52,7 +52,7 @@ class BasicLayout extends Component {
           <div className="body">
             <div
               className="leftPanel"
-              style={{ width: widthMenuLeft, backgroundColor: "red" }}
+              style={{ width: widthMenuLeft, minWidth: widthMenuLeft }}
             >
               <div className="menu" style={{ width: widthMenuLeft }}>
                 <NavLink
@@ -116,17 +116,17 @@ class BasicLayout extends Component {
 }
 
 const mapStateToProps = ({
-  user: { expiredToken, myInfo = {}, widthMenu } = {}
+  user: { expiredToken, myInfo = {}, widthMenu } = {},
 }) => ({
   expiredToken,
   myInfo,
-  widthMenu
+  widthMenu,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getMyInfo: () => dispatch({ type: "GET_MY_INFO" }),
-  setDataUserReducer: data => dispatch({ type: "UPDATE_STATE", data }),
-  logout: data => dispatch({ type: "USER_LOGOUT", data })
+  setDataUserReducer: (data) => dispatch({ type: "UPDATE_STATE", data }),
+  logout: (data) => dispatch({ type: "USER_LOGOUT", data }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BasicLayout);

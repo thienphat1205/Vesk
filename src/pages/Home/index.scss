@@ -3,16 +3,17 @@
   width: 76%;
   // min-width: 276px;
   height: auto;
-  .bx--grid {
-    padding-left: 5rem;
-  }
+  box-sizing: border-box;
+  padding: 1rem;
   .bx--row {
     margin-top: -1rem;
+    // justify-content: center;
+
     .bx--col {
       min-width: 210px;
       max-width: 210px;
       height: 120px;
-      margin: 30px 30px 0px 0px;
+      margin-top: 2rem;
       .item__video {
         &__img {
           width: 100%;

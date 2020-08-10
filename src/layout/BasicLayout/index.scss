@@ -59,4 +59,9 @@ $menuColor: #7d5a5a;
       }
     }
   }
+  @media only screen and (max-width: 768px) {
+    .ads {
+      display: none;
+    }
+  }
 }
