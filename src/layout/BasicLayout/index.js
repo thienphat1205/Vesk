@@ -9,10 +9,10 @@ import { connect } from "react-redux";
 import "./index.scss";
 
 class BasicLayout extends Component {
-  componentDidMount() {
-    const { getMyInfo } = this.props;
-    getMyInfo();
-  }
+  // componentDidMount() {
+  //   const { getMyInfo } = this.props;
+  //   getMyInfo();
+  // }
 
   hideModal = () => {
     const { setDataUserReducer } = this.props;
