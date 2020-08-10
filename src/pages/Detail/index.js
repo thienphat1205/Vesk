@@ -62,9 +62,9 @@ class Detail extends React.Component {
   };
   stopVideo = () => {
     this.player.stopVideo();
-    if (this.isComponentMounted) {
-      alert("You have watched 10s");
-    }
+    // if (this.isComponentMounted) {
+    //   alert("You have watched 10s");
+    // }
   };
 
   render() {
@@ -79,13 +79,42 @@ class Detail extends React.Component {
         <div className="container__detail__view__player">
           <div id="player" className="container__detail__player" />
         </div>
+        <div className="container__detail__viewTitle">
+          <div className="container__detail__viewTitle--text">
+            {itemVideo.title}
+          </div>
+        </div>
+
         <div className="line" />
         <div className="container__detail__comment">
           <div className="container__detail__comment__title">COMMENTS</div>
-          <div className="container__detail__comment__compose">
-            Compose comment
+          <div className="container__detail__comment__box compose__comment">
+            <img
+              className="comment__avatar"
+              src={require("../../images/testAvatar.jpg")}
+              alt="img-avatar"
+            />
+            <div style={{ width: "90%", backgroundColor: "yellowgreen" }}>
+              <div style={{ backgroundColor: "red", width: "100%" }}>
+                Compose comment
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                Compose comment
+              </div>
+            </div>
           </div>
-          <div>List comments</div>
+          <div className="container__detail__comment__box list__comment">
+            <img
+              className="comment__avatar"
+              src={require("../../images/testAvatar.jpg")}
+              alt="img-avatar"
+            />
+            <div>
+              <div>Content 1</div>
+              <div>Content 2</div>
+              <div>Content 3</div>
+            </div>
+          </div>
         </div>
       </div>
     );
