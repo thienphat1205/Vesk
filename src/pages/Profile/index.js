@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import TitlePage from "../../components/TitlePage";
 import { connect } from "react-redux";
+import { getToken } from "../../utils/token";
 
 class Profile extends Component {
   render() {
-    const {
-      myInfo: { firstName = "", lastName = "" } = {}
-      // history,
-    } = this.props;
-    const fullName = `${firstName} ${lastName}`;
+    // const { history } = this.props;
+    const { data } = getToken();
     return (
       <div style={{ backgroundColor: "#fff", width: "76%", height: "500px" }}>
-        <TitlePage title={`${fullName} | Profile`} />
-        <h1>This is profile {fullName}</h1>
+        <TitlePage title={`${data.userName} | Profile`} />
+        <h1>This is profile {data.userName}</h1>
       </div>
     );
   }

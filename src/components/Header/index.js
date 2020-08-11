@@ -10,7 +10,7 @@ import {
   ChevronSortDown20,
   Menu20
 } from "@carbon/icons-react";
-import { getToken } from "../../utils/token";
+import { getToken, setToken } from "../../utils/token";
 import "./index.scss";
 
 class ComponentHeader extends Component {
@@ -20,19 +20,18 @@ class ComponentHeader extends Component {
   }
 
   handleLogout = () => {
-    const { history, logout } = this.props;
-    logout(history);
+    const {
+      history
+      //  logout
+    } = this.props;
+    setToken(undefined);
+    history.push("/");
   };
 
   render() {
-    const {
-      myInfo: { firstName = "", lastName = "" } = {},
-      history,
-      handleMenu
-    } = this.props;
-    const { token } = getToken();
-    console.log("token", token);
-    const fullName = `${firstName} ${lastName}`;
+    const { history, handleMenu } = this.props;
+    const { token, data = {} } = getToken();
+
     const rightMenuSignIn = (
       <Fragment>
         <div className="rightMenu" onClick={this.showDropDownMenu}>
@@ -41,7 +40,7 @@ class ComponentHeader extends Component {
             src={require("../../images/testAvatar.jpg")}
             alt="img-avatar"
           />
-          <p className="rightMenu__textName">{fullName}</p>
+          <p className="rightMenu__textName">{data.userName}</p>
           <ChevronSortDown20 className="icon" />
         </div>
         <div className="dropDownMenu">
