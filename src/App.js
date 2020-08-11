@@ -10,7 +10,7 @@ class App extends Component {
       return (
         <Route
           {...rest}
-          render={(props) => (
+          render={props => (
             <Layout {...props}>
               <Suspense fallback={<Loading withOverlay={false} />}>
                 <Component {...props} />
@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <Switch>
-          {routes.map((route) => (
+          {routes.map(route => (
             <AppRoute
               key={route.path}
               path={route.path}
