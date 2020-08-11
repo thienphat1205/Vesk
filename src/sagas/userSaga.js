@@ -8,13 +8,19 @@ function* handleSignUp(object) {
   const history = object.data.history;
   yield delay(500);
   const resp = yield call(signUpAPI, dat);
-  if (resp.statusCode !== 200) {
+  console.log("resp", resp);
+  if (resp.code !== 200) {
     yield put({ type: "USER_SIGNUP_FAIL", data: resp });
     return;
   }
+  const { data = {}, data: { token } = {} } = resp;
+  setToken({
+    token,
+    data
+  });
   yield put({ type: "USER_SIGNUP_SUCCESS" });
   yield delay(3000);
-  yield call(history.push, "/signin");
+  yield call(history.push, "/");
 }
 
 function* handleSignIn(object) {
@@ -29,7 +35,7 @@ function* handleSignIn(object) {
   const { accessToken, refreshToken } = resp;
   setToken({
     token: accessToken,
-    refreshToken,
+    refreshToken
   });
   yield put({ type: "USER_SIGNIN_SUCCESS" });
   yield call(history.push, "/");
@@ -63,5 +69,5 @@ export const userSaga = [
   takeLatest(USER.SIGNUP, handleSignUp),
   takeLatest(USER.SIGNIN, handleSignIn),
   takeLatest(USER.LOGOUT, handleLogout),
-  takeLatest(USER.GET_MY_INFO, getMyInfo),
+  takeLatest(USER.GET_MY_INFO, getMyInfo)
 ];

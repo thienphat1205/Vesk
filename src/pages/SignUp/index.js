@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Form, FormGroup, TextInput } from "carbon-components-react";
-import { UserIdentification32, Reply32 } from "@carbon/icons-react";
+import { Reply32 } from "@carbon/icons-react";
 import { connect } from "react-redux";
 import TitlePage from "../../components/TitlePage";
 import ButtonLoading from "../../components/ButtonLoading";
@@ -304,11 +304,11 @@ class SignUp extends Component {
                   loading={loading ? "yes" : undefined}
                   type="submit"
                   text="Sign Up"
-                  // renderIcon={UserIdentification32}
                   style={{
                     marginTop: "10px",
-                    width: "140px",
-                    height: "47px"
+                    width: "7rem",
+                    height: "47px",
+                    paddingRight: "1.5rem"
                   }}
                 />
 
