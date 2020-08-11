@@ -49,6 +49,12 @@ class Detail extends React.Component {
     this.setState({ textComment: value });
   };
 
+  handleSubmit = () => {
+    const { textComment } = this.state;
+    alert(`Your comment: ${textComment}`);
+    this.setState({ textComment: "" });
+  };
+
   loadVideo = () => {
     this.player = new window.YT.Player(`player`, {
       videoId: "KjvM4WJcedA",
@@ -133,7 +139,7 @@ class Detail extends React.Component {
                 />
 
                 <ButtonLoading
-                  // onClick={this.handleSubmit}
+                  onClick={this.handleSubmit}
                   // disabled={loading}
                   disabled={!textComment}
                   // loading={loading ? "yes" : undefined}

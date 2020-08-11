@@ -1,13 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   Header,
-  // HeaderNavigation,
   HeaderContainer,
-  // SideNav,
-  // SkipToContent,
-  // HeaderMenuButton,
-  // SideNavItems,
-  // HeaderSideNavItems,
   HeaderGlobalBar
 } from "carbon-components-react/lib/components/UIShell";
 import {
@@ -16,6 +10,7 @@ import {
   ChevronSortDown20,
   Menu20
 } from "@carbon/icons-react";
+import { getToken } from "../../utils/token";
 import "./index.scss";
 
 class ComponentHeader extends Component {
@@ -35,130 +30,72 @@ class ComponentHeader extends Component {
       history,
       handleMenu
     } = this.props;
-    const fullName = firstName ? `${firstName} ${lastName}` : "User Name";
+    const { token } = getToken();
+    console.log("token", token);
+    const fullName = `${firstName} ${lastName}`;
+    const rightMenuSignIn = (
+      <Fragment>
+        <div className="rightMenu" onClick={this.showDropDownMenu}>
+          <img
+            className="rightMenu__avatar"
+            src={require("../../images/testAvatar.jpg")}
+            alt="img-avatar"
+          />
+          <p className="rightMenu__textName">{fullName}</p>
+          <ChevronSortDown20 className="icon" />
+        </div>
+        <div className="dropDownMenu">
+          <div
+            className="dropDownMenu__item"
+            onClick={() => history.push("/profile")}
+          >
+            <UserProfile20 />
+            <p className="dropDownMenu__item--text">Profile</p>
+          </div>
+          <div className="dropDownMenu__item" onClick={this.handleLogout}>
+            <Logout20 />
+            <p className="dropDownMenu__item--text">Logout</p>
+          </div>
+        </div>
+      </Fragment>
+    );
+    const rightMenuNotSignIn = (
+      <Fragment>
+        <div
+          className="rightMenuLogin rightMenuLogin__text"
+          onClick={() => history.push("/signin")}
+        >
+          Sign In
+        </div>
+        <div
+          className="rightMenuLogin"
+          style={{ padding: "0px", color: "#acb7b8" }}
+        >
+          |
+        </div>
+        <div
+          className="rightMenuLogin rightMenuLogin__text"
+          onClick={() => history.push("/signup")}
+        >
+          Sign Up
+        </div>
+      </Fragment>
+    );
     return (
       <div className="rootHeader" style={{ height: "auto" }}>
         <HeaderContainer
           render={({ isSideNavExpanded, onClickSideNavExpand }) => (
             <>
               <Header aria-label="IBM Platform Name">
-                {/* <HeaderMenuButton
-                  aria-label="Open menu"
-                  onClick={onClickSideNavExpand}
-                  isActive={isSideNavExpanded}
-                /> */}
                 <div
                   style={{ color: "#acb7b8", marginLeft: "1rem" }}
                   onClick={handleMenu}
                 >
                   <Menu20 />
                 </div>
-                {/* <NavLink
-                  exact
-                  to="/"
-                  activeClassName="none"
-                  className="itemMenu"
-                >
-                  Demo React-Carbon
-                </NavLink>
-
-                <HeaderNavigation aria-label="IBM [Platform]">
-                  <NavLink
-                    exact
-                    activeClassName="menuHorizontalActive"
-                    to="/"
-                    className="itemMenu"
-                  >
-                    Home
-                  </NavLink>
-
-                  <NavLink
-                    activeClassName="menuHorizontalActive"
-                    to="/users"
-                    className="itemMenu"
-                  >
-                    Users
-                  </NavLink>
-
-                  <NavLink
-                    activeClassName="menuHorizontalActive"
-                    to="/contact"
-                    className="itemMenu"
-                  >
-                    Contact
-                  </NavLink>
-                  {role === "admin" && (
-                    <NavLink
-                      activeClassName="menuHorizontalActive"
-                      to="/contact"
-                      className="itemMenu"
-                    >
-                      Admin Page
-                    </NavLink>
-                  )}
-                </HeaderNavigation> */}
                 <HeaderGlobalBar>
-                  <div className="rightMenu" onClick={this.showDropDownMenu}>
-                    <img
-                      className="rightMenu__avatar"
-                      src={require("../../images/testAvatar.jpg")}
-                      alt="img-avatar"
-                    />
-                    <p className="rightMenu__textName">{fullName}</p>
-
-                    <ChevronSortDown20 className="icon" />
-                  </div>
-                  <div className="dropDownMenu">
-                    <div
-                      className="dropDownMenu__item"
-                      onClick={() => history.push("/profile")}
-                    >
-                      <UserProfile20 />
-                      <p className="dropDownMenu__item--text">Profile</p>
-                    </div>
-                    <div
-                      className="dropDownMenu__item"
-                      onClick={this.handleLogout}
-                    >
-                      <Logout20 />
-                      <p className="dropDownMenu__item--text">Logout</p>
-                    </div>
-                  </div>
+                  {token ? rightMenuSignIn : rightMenuNotSignIn}
                 </HeaderGlobalBar>
-                {/* <SideNav
-                  aria-label="Side navigation"
-                  expanded={isSideNavExpanded}
-                  isPersistent={false}
-                >
-                  <SideNavItems>
-                    <HeaderSideNavItems>
-                      <NavLink
-                        exact
-                        activeClassName="active"
-                        to="/"
-                        // className="itemMenu"
-                      >
-                        Home
-                      </NavLink>
-
-                      <NavLink
-                        activeClassName="active"
-                        to="/users"
-                        // className="itemMenu"
-                      >
-                        Users
-                      </NavLink>
-
-                      <NavLink
-                        activeClassName="active"
-                        to="/contact"
-                        // className="itemMenu"
-                      >
-                        Contact
-                      </NavLink>
-                    </HeaderSideNavItems>
-                  </SideNavItems>
-                </SideNav> */}
               </Header>
             </>
           )}

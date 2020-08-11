@@ -63,6 +63,20 @@ $menuColor: #fff;
     }
   }
 
+  .rightMenuLogin {
+    @extend .itemMenu;
+    &__text {
+      font-size: 14px;
+      color: #acb7b8;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    &:active,
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
   .dropDownMenu {
     display: none;
     width: 11rem;
