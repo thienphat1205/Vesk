@@ -22,14 +22,14 @@ function* handleSignIn(object) {
   const history = object.data.history;
   yield delay(500);
   const resp = yield call(signInAPI, dat);
-  if (resp.statusCode !== 200) {
+  if (resp.code !== 200) {
     yield put({ type: "USER_SIGNIN_FAIL", data: resp });
     return;
   }
-  const { accessToken, refreshToken } = resp;
+  const { data = {}, data: { token } = {} } = resp;
   setToken({
-    token: accessToken,
-    refreshToken,
+    token,
+    data
   });
   yield put({ type: "USER_SIGNIN_SUCCESS" });
   yield call(history.push, "/");
