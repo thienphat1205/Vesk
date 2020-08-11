@@ -1,22 +1,16 @@
 .container_page_home {
-  background-color: #fff;
-  width: 76%;
-  // min-width: 276px;
+  width: 80%;
   height: auto;
   box-sizing: border-box;
   padding: 1rem;
   .bx--row {
     margin-top: -1rem;
-    // justify-content: center;
-
     .bx--col {
-      min-width: 210px;
-      max-width: 210px;
       height: 120px;
       margin-top: 2rem;
       .item__video {
         &__img {
-          width: 100%;
+          width: 210px;
           height: auto;
         }
         &__title {
@@ -24,7 +18,6 @@
           font-weight: 600;
         }
         &:hover {
-          outline: 0.5rem solid #ff516b;
           transform: scale(1.05);
         }
       }
