@@ -70,7 +70,7 @@ class Login extends Component {
       check,
     });
     if (!check) {
-      const valueLogin = { email, password };
+      const valueLogin = { name:email, password };
       signIn(valueLogin, history);
     }
   };
@@ -185,8 +185,7 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (data, history) =>
-    dispatch({ type: "USER_SIGNIN", data: { data, history } }),
+  signIn: (data, history) => dispatch({ type: "USER_SIGNIN", data: { data, history } }),
   updateStateReducer: (data) => dispatch({ type: "UPDATE_STATE", data }),
 });
 
