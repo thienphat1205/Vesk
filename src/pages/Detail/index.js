@@ -13,6 +13,7 @@ class Detail extends React.Component {
     this.isComponentMounted = false;
     this.state = {
       itemVideo: {},
+      textComment: ""
     };
   }
   componentDidMount() {
@@ -20,12 +21,12 @@ class Detail extends React.Component {
     // Fetch video by Id
     const {
       match: { params: { id = "" } = {} } = {},
-      dummyListVideo,
+      dummyListVideo
     } = this.props;
-    const videoById = dummyListVideo.find((element) => element._id === id);
+    const videoById = dummyListVideo.find(element => element._id === id);
     if (videoById) {
       this.setState({
-        itemVideo: videoById,
+        itemVideo: videoById
       });
     }
     if (!window.YT) {
@@ -44,21 +45,25 @@ class Detail extends React.Component {
     this.isComponentMounted = false;
   }
 
+  handleChangeComment = value => {
+    this.setState({ textComment: value });
+  };
+
   loadVideo = () => {
     this.player = new window.YT.Player(`player`, {
       videoId: "KjvM4WJcedA",
       events: {
         onReady: this.onPlayerReady,
-        onStateChange: this.onPlayerStateChange,
-      },
+        onStateChange: this.onPlayerStateChange
+      }
     });
   };
 
-  onPlayerReady = (event) => {
+  onPlayerReady = event => {
     event.target.playVideo();
   };
 
-  onPlayerStateChange = (event) => {
+  onPlayerStateChange = event => {
     if (event.data === window.YT.PlayerState.PLAYING) {
       setTimeout(this.stopVideo, 10000);
     }
@@ -72,7 +77,7 @@ class Detail extends React.Component {
 
   render() {
     const { match: { params: { id = "" } = {} } = {} } = this.props;
-    const { itemVideo } = this.state;
+    const { itemVideo, textComment } = this.state;
     if (!id) {
       return <Redirect to="/" />;
     }
@@ -100,31 +105,37 @@ class Detail extends React.Component {
                 <TextArea
                   cols={0}
                   id="composeComment"
-                  // invalid={true}
-                  // invalidText="A valid value is required"
                   labelText=""
                   hideLabel
+                  value={textComment}
+                  onChange={event =>
+                    this.handleChangeComment(event.target.value)
+                  }
                   placeholder="Add a public comment"
                   rows={0}
                 />
               </div>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <ButtonOutline
-                  // onClick={() => history.push("/signin")}
+                  onClick={() =>
+                    this.setState({
+                      textComment: ""
+                    })
+                  }
                   disabled={false}
                   // renderIcon={Reply32}
                   text="Cancel"
                   style={{
                     width: "7rem",
                     height: "30px",
-                    marginTop: "7px",
+                    marginTop: "7px"
                   }}
                 />
 
                 <ButtonLoading
                   // onClick={this.handleSubmit}
                   // disabled={loading}
-                  disabled={true}
+                  disabled={!textComment}
                   // loading={loading ? "yes" : undefined}
                   // type="submit"
                   text="Comment"
@@ -133,7 +144,7 @@ class Detail extends React.Component {
                     width: "7rem",
                     height: "30px",
                     marginTop: "7px",
-                    marginLeft: "10px",
+                    marginLeft: "10px"
                   }}
                 />
               </div>
@@ -159,10 +170,10 @@ class Detail extends React.Component {
   }
 }
 const mapStateToProps = ({ products: { dummyListVideo } = {} }) => ({
-  dummyListVideo,
+  dummyListVideo
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   // getAllProduct: () => dispatch({ type: "GET_ALL_PRODUCT" }),
   // clearData: () => dispatch({ type: "CLEAR_DATA" }),
   // setData: data => dispatch({ type: "SET_STATE_REDUCER", data })
