@@ -17,12 +17,14 @@ class SignUp extends Component {
       confirmPassword: "",
       email: "",
       password: "",
+      userName: "",
       check: false,
       validationEmail: false,
       validationPassword: false,
       validationConfirm: false,
       validationFirstName: false,
       validationLastName: false,
+      validationUserName: false
     };
   }
 
@@ -30,37 +32,42 @@ class SignUp extends Component {
     const { updateStateReducer } = this.props;
     updateStateReducer({
       isSignUpSuccessfully: "",
-      messageSignUp: "",
+      messageSignUp: ""
     });
   }
 
-  handleChangePwd = (value) => {
+  handleChangePwd = value => {
     this.setState({ password: value });
   };
 
-  handleChangeEmail = (value) => {
+  handleChangeEmail = value => {
     this.setState({ email: value.toLowerCase() });
   };
 
-  handleChangeFirstName = (value) => {
+  handleChangeUserName = value => {
+    this.setState({ userName: value });
+  };
+
+  handleChangeFirstName = value => {
     this.setState({ firstName: value });
   };
 
-  handleChangeLastName = (value) => {
+  handleChangeLastName = value => {
     this.setState({ lastName: value });
   };
 
-  handleChangeConfirmPwd = (value) => {
+  handleChangeConfirmPwd = value => {
     this.setState({ confirmPassword: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     const {
       email,
       password,
       confirmPassword,
       firstName,
       lastName,
+      userName
     } = this.state;
     const { signUp, history } = this.props;
     event.preventDefault();
@@ -70,66 +77,78 @@ class SignUp extends Component {
     if (emailRegex.test(email) === false) {
       this.setState({
         validationEmail: true,
-        messageValidationEmail: "The email is not valid",
+        messageValidationEmail: "The email is not valid"
       });
       check = true;
     } else {
       this.setState({
         validationEmail: false,
-        messageValidationEmail: "",
+        messageValidationEmail: ""
       });
     }
     if (password.length < 8) {
       this.setState({
         validationPassword: true,
-        messageValidationPwd: "Password must be at least 8 characters",
+        messageValidationPwd: "Password must be at least 8 characters"
       });
       check = true;
     } else {
       this.setState({
         validationPassword: false,
-        messageValidationPwd: "",
+        messageValidationPwd: ""
       });
     }
 
     if (confirmPassword !== password && password !== "") {
       this.setState({
         validationConfirm: true,
-        messageValidationConfirm: "Password not match",
+        messageValidationConfirm: "Password not match"
       });
       check = true;
     } else {
       this.setState({
         validationConfirm: false,
-        messageValidationConfirm: "",
+        messageValidationConfirm: ""
       });
     }
     if (firstName === "") {
       this.setState({
         validationFirstName: true,
-        messageValidationFirstName: "First name is required",
+        messageValidationFirstName: "First name is required"
       });
       check = true;
     } else {
       this.setState({
         validationFirstName: false,
-        messageValidationFirstName: "",
+        messageValidationFirstName: ""
       });
     }
     if (lastName === "") {
       this.setState({
         validationLastName: true,
-        messageValidationLastName: "Last name is required",
+        messageValidationLastName: "Last name is required"
       });
       check = true;
     } else {
       this.setState({
         validationLastName: false,
-        messageValidationLastName: "",
+        messageValidationLastName: ""
+      });
+    }
+    if (userName === "") {
+      this.setState({
+        validationUserName: true,
+        messageValidationUserName: "User name is required"
+      });
+      check = true;
+    } else {
+      this.setState({
+        validationUserName: false,
+        messageValidationUserName: ""
       });
     }
     if (!check) {
-      const valueSignUp = { firstName, lastName, email, password };
+      const valueSignUp = { email, password, userName, firstName, lastName };
       signUp(valueSignUp, history);
     }
   };
@@ -146,17 +165,20 @@ class SignUp extends Component {
       messageValidationFirstName,
       validationLastName,
       messageValidationLastName,
+      validationUserName,
+      messageValidationUserName,
+      userName,
       email,
       password,
       firstName,
       lastName,
-      confirmPassword,
+      confirmPassword
     } = this.state;
     const {
       history,
       loading,
       isSignUpSuccessfully,
-      messageSignUp,
+      messageSignUp
     } = this.props;
 
     return (
@@ -178,7 +200,7 @@ class SignUp extends Component {
                       labelText="First Name"
                       required
                       light={true}
-                      onChange={(event) =>
+                      onChange={event =>
                         this.handleChangeFirstName(event.target.value)
                       }
                       placeholder="First name"
@@ -198,7 +220,7 @@ class SignUp extends Component {
                       labelText="Last Name"
                       required
                       light={true}
-                      onChange={(event) =>
+                      onChange={event =>
                         this.handleChangeLastName(event.target.value)
                       }
                       placeholder="Last name"
@@ -211,15 +233,30 @@ class SignUp extends Component {
               <FormGroup legendText="">
                 <TextInput
                   disabled={false}
+                  invalid={validationUserName}
+                  id="inputUserName"
+                  invalidText={messageValidationUserName}
+                  labelText="User Name"
+                  required
+                  light={true}
+                  onChange={event =>
+                    this.handleChangeUserName(event.target.value)
+                  }
+                  placeholder="User Name"
+                  type="text"
+                  value={userName}
+                />
+              </FormGroup>
+              <FormGroup legendText="">
+                <TextInput
+                  disabled={false}
                   invalid={validationEmail}
                   id="inputEmail"
                   invalidText={messageValidationEmail}
                   labelText="Email"
                   required
                   light={true}
-                  onChange={(event) =>
-                    this.handleChangeEmail(event.target.value)
-                  }
+                  onChange={event => this.handleChangeEmail(event.target.value)}
                   placeholder="Email"
                   type="text"
                   value={email}
@@ -235,7 +272,7 @@ class SignUp extends Component {
                   labelText="Password"
                   placeholder="Password"
                   light={true}
-                  onChange={(event) => this.handleChangePwd(event.target.value)}
+                  onChange={event => this.handleChangePwd(event.target.value)}
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
                   required
                   type="password"
@@ -250,7 +287,7 @@ class SignUp extends Component {
                   labelText="Confirm Password"
                   placeholder="Confirm Password"
                   light={true}
-                  onChange={(event) =>
+                  onChange={event =>
                     this.handleChangeConfirmPwd(event.target.value)
                   }
                   // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
@@ -267,11 +304,11 @@ class SignUp extends Component {
                   loading={loading ? "yes" : undefined}
                   type="submit"
                   text="Sign Up"
-                  renderIcon={UserIdentification32}
+                  // renderIcon={UserIdentification32}
                   style={{
                     marginTop: "10px",
                     width: "140px",
-                    height: "47px",
+                    height: "47px"
                   }}
                 />
 
@@ -302,17 +339,17 @@ class SignUp extends Component {
 }
 
 const mapStateToProps = ({
-  user: { loading, isSignUpSuccessfully = "", messageSignUp = "" } = {},
+  user: { loading, isSignUpSuccessfully = "", messageSignUp = "" } = {}
 }) => ({
   loading,
   isSignUpSuccessfully,
-  messageSignUp,
+  messageSignUp
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   signUp: (data, history) =>
     dispatch({ type: "USER_SIGNUP", data: { data, history } }),
-  updateStateReducer: (data) => dispatch({ type: "UPDATE_STATE", data }),
+  updateStateReducer: data => dispatch({ type: "UPDATE_STATE", data })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -1,8 +1,7 @@
 import { getToken, setToken } from "./token";
 import URL from "./url";
-import { CONFIG } from "../config/config";
 
-const BASE_URL = CONFIG.BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const handleRefreshToken = async () => {
   const url = `${BASE_URL}${URL.REFRESH_TOKEN}`;

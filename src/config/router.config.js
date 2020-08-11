@@ -1,15 +1,12 @@
 import { lazy } from "react";
 import BasicLayout from "../layout/BasicLayout";
 import LoginLayout from "../layout/LoginLayout";
-// import Home from "../pages/Home";
 import Notfound from "../pages/404Page";
-// import Users from "../pages/User";
 import ReviewUser from "../pages/User/ReviewUser";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import Detail from "../pages/Detail";
 import ForgotPassword from "../pages/ForgotPassword";
-// import Contact from "../pages/Contact";
 const Contact = lazy(() => import("../pages/Contact"));
 const Home = lazy(() => import("../pages/Home"));
 const Users = lazy(() => import("../pages/User"));

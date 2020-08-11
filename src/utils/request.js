@@ -1,14 +1,12 @@
 import { getToken } from "../utils/token";
 // import handleRefreshToken from "../utils/refreshToken";
-import { CONFIG } from "../config/config";
 
-const BASE_URL = CONFIG.BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const request = async (url, method = "GET", payload, notAuth) => {
   const urlAPI = `${BASE_URL}${url}`;
   const payloadRequestRefreshToken = { urlAPI, method, payload };
   const { token } = await getToken();
-
   const body = payload ? JSON.stringify({ ...payload }) : undefined;
   let headers = { "Content-Type": "application/json" };
   if (!notAuth) {
