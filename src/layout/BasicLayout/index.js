@@ -3,8 +3,8 @@ import { Modal } from "carbon-components-react";
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-// import { Redirect } from "react-router-dom";
-// import { getToken } from "../../utils/token";
+import { Redirect } from "react-router-dom";
+import { getToken } from "../../utils/token";
 import { connect } from "react-redux";
 import "./index.scss";
 
@@ -36,10 +36,10 @@ class BasicLayout extends Component {
   render() {
     const { children, history, expiredToken, myInfo, widthMenu } = this.props;
     const widthMenuLeft = widthMenu ? "225px" : "90px";
-    // const { token } = getToken();
-    // if (!token) {
-    //   return <Redirect to="/signin" />;
-    // }
+    const { token } = getToken();
+    if (!token) {
+      return <Redirect to="/signin" />;
+    }
     return (
       <Fragment>
         <div className="container_basic_layout">
