@@ -1,7 +1,10 @@
 import React from "react";
 import TitlePage from "../../components/TitlePage";
 import { connect } from "react-redux";
+import { TextArea } from "carbon-components-react";
 import { Redirect } from "react-router-dom";
+import ButtonLoading from "../../components/ButtonLoading";
+import ButtonOutline from "../../components/ButtonOutline";
 import "./index.scss";
 
 class Detail extends React.Component {
@@ -84,8 +87,6 @@ class Detail extends React.Component {
             {itemVideo.title}
           </div>
         </div>
-
-        <div className="line" />
         <div className="container__detail__comment">
           <div className="container__detail__comment__title">COMMENTS</div>
           <div className="container__detail__comment__box compose__comment">
@@ -94,12 +95,47 @@ class Detail extends React.Component {
               src={require("../../images/testAvatar.jpg")}
               alt="img-avatar"
             />
-            <div style={{ width: "90%", backgroundColor: "yellowgreen" }}>
-              <div style={{ backgroundColor: "red", width: "100%" }}>
-                Compose comment
+            <div style={{ width: "90%" }}>
+              <div className="comment__textArea">
+                <TextArea
+                  cols={0}
+                  id="composeComment"
+                  // invalid={true}
+                  // invalidText="A valid value is required"
+                  labelText=""
+                  hideLabel
+                  placeholder="Add a public comment"
+                  rows={0}
+                />
               </div>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                Compose comment
+                <ButtonOutline
+                  // onClick={() => history.push("/signin")}
+                  disabled={false}
+                  // renderIcon={Reply32}
+                  text="Cancel"
+                  style={{
+                    width: "7rem",
+                    height: "30px",
+                    marginTop: "7px",
+                  }}
+                />
+
+                <ButtonLoading
+                  // onClick={this.handleSubmit}
+                  // disabled={loading}
+                  disabled={true}
+                  // loading={loading ? "yes" : undefined}
+                  // type="submit"
+                  text="Comment"
+                  // renderIcon={UserIdentification32}
+                  style={{
+                    width: "7rem",
+                    height: "30px",
+                    marginTop: "7px",
+                    marginLeft: "10px",
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -110,9 +146,11 @@ class Detail extends React.Component {
               alt="img-avatar"
             />
             <div>
-              <div>Content 1</div>
-              <div>Content 2</div>
-              <div>Content 3</div>
+              <div style={{ marginBottom: "1rem" }}>
+                <span className="list__comment--name">Name</span>
+                <span className="list__comment--time">2 month ago</span>
+              </div>
+              <p className="list__comment--content">Content comment</p>
             </div>
           </div>
         </div>

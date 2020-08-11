@@ -9,17 +9,15 @@ $white: #fff;
 .btnLoading {
   .bx--btn--primary {
     color: $white;
-    @include background(right, $gray-383838, $black-020202);
+    background: linear-gradient(135deg, #ff253a 0%, #ff8453 100%);
+    min-height: 20px;
+    border-radius: 4px;
     box-sizing: border-box;
+    font-weight: 600;
     &:active,
     &:disabled {
       opacity: 0.5;
     }
-
-    &:hover {
-      @include background(right, $black-020202, $gray-383838);
-    }
-
     &:focus {
       border: none;
       background-color: $black-020202;
