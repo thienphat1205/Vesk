@@ -1,19 +1,48 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, PureComponent } from "react";
 import { Modal } from "carbon-components-react";
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-// import { Redirect } from "react-router-dom";
-// import { getToken } from "../../utils/token";
 import { connect } from "react-redux";
 import "./index.scss";
 
-class BasicLayout extends Component {
-  // componentDidMount() {
-  //   const { getMyInfo } = this.props;
-  //   getMyInfo();
-  // }
+class LeftMenu extends PureComponent {
+  render() {
+    const classNameMenu = "closeLeftPanel";
+    return (
+      <div className={classNameMenu}>
+        <div className={`${classNameMenu}__menu`}>
+          <NavLink
+            exact
+            activeClassName={`${classNameMenu}__menu__itemMenu--active`}
+            to="/"
+            className={`${classNameMenu}__menu__itemMenu`}
+          >
+            Home
+          </NavLink>
 
+          <NavLink
+            activeClassName={`${classNameMenu}__menu__itemMenu--active`}
+            to="/users"
+            className={`${classNameMenu}__menu__itemMenu`}
+          >
+            Users
+          </NavLink>
+
+          <NavLink
+            activeClassName={`${classNameMenu}__menu__itemMenu--active`}
+            to="/contact"
+            className={`${classNameMenu}__menu__itemMenu`}
+          >
+            Contact
+          </NavLink>
+        </div>
+      </div>
+    );
+  }
+}
+
+class BasicLayout extends Component {
   hideModal = () => {
     const { setDataUserReducer } = this.props;
     setDataUserReducer({
@@ -26,78 +55,14 @@ class BasicLayout extends Component {
     logout(history);
   };
 
-  handleMenu = () => {
-    const { widthMenu, setDataUserReducer } = this.props;
-    let checkStateMenu;
-    if (widthMenu === "firstRender") {
-      checkStateMenu = false;
-    } else {
-      checkStateMenu = !widthMenu;
-    }
-    setDataUserReducer({
-      widthMenu: checkStateMenu
-    });
-  };
-
-  renderClassNameMenu = stateMenu => {
-    let className;
-    if (stateMenu === "firstRender") {
-      className = "defaultLeftPanel";
-    }
-    if (stateMenu === false) {
-      className = "closeLeftPanel";
-    }
-    if (stateMenu === true) {
-      className = "openLeftPanel";
-    }
-    return className;
-  };
-
   render() {
-    const { children, history, expiredToken, widthMenu } = this.props;
-    const classNameMenu = this.renderClassNameMenu(widthMenu);
-    // const { token } = getToken();
-    // if (!token) {
-    //   return <Redirect to="/signin" />;
-    // }
+    const { children, history, expiredToken } = this.props;
     return (
       <Fragment>
         <div className="container_basic_layout">
-          <Header
-            history={history}
-            logout={this._logout}
-            // myInfo={myInfo}
-            handleMenu={this.handleMenu}
-          />
+          <Header history={history} />
           <div className="body">
-            <div className={classNameMenu}>
-              <div className={`${classNameMenu}__menu`}>
-                <NavLink
-                  exact
-                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
-                  to="/"
-                  className={`${classNameMenu}__menu__itemMenu`}
-                >
-                  Home
-                </NavLink>
-
-                <NavLink
-                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
-                  to="/users"
-                  className={`${classNameMenu}__menu__itemMenu`}
-                >
-                  Users
-                </NavLink>
-
-                <NavLink
-                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
-                  to="/contact"
-                  className={`${classNameMenu}__menu__itemMenu`}
-                >
-                  Contact
-                </NavLink>
-              </div>
-            </div>
+            <LeftMenu />
             <div style={{ width: "100%" }}>
               <div className="content">
                 <div style={{ width: "100%" }}>{children}</div>
