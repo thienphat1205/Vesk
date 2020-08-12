@@ -14,7 +14,7 @@ class Footer extends Component {
         }}
       >
         <div style={{ color: "#888" }}>
-          <p>© 2020 Nguyen Phat</p>
+          <p>© 2020 Vesk</p>
         </div>
       </footer>
     );

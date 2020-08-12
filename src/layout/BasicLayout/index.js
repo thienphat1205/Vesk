@@ -18,7 +18,8 @@ class LeftMenu extends PureComponent {
             to="/"
             className={`${classNameMenu}__menu__itemMenu`}
           >
-            Home
+            <i class="fas fa-home itemMenu__icon"></i>
+            <span className="itemMenu__text">Home</span>
           </NavLink>
 
           <NavLink
@@ -26,7 +27,8 @@ class LeftMenu extends PureComponent {
             to="/users"
             className={`${classNameMenu}__menu__itemMenu`}
           >
-            Users
+            <i class="fas fa-users itemMenu__icon"></i>
+            <span className="itemMenu__text">Users</span>
           </NavLink>
 
           <NavLink
@@ -34,7 +36,8 @@ class LeftMenu extends PureComponent {
             to="/contact"
             className={`${classNameMenu}__menu__itemMenu`}
           >
-            Contact
+            <i class="fas fa-address-book itemMenu__icon"></i>
+            <span className="itemMenu__text">Contact</span>
           </NavLink>
         </div>
       </div>

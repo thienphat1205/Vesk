@@ -32,6 +32,14 @@ $menuColor: #7d5a5a;
           font-weight: 600;
           width: 90px;
           transition: width 0.2s;
+          .itemMenu__icon {
+            font-size: 22px;
+            margin-left: 5px;
+          }
+          .itemMenu__text {
+            margin-left: 1rem;
+            display: none;
+          }
           &:hover {
             opacity: 0.5;
             background-color: rgba(255, 255, 255, 0.2);
@@ -49,6 +57,9 @@ $menuColor: #7d5a5a;
           width: 225px;
           .closeLeftPanel__menu__itemMenu {
             width: 225px;
+            .itemMenu__text {
+              display: inline-block;
+            }
           }
         }
       }
