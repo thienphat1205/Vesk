@@ -5,6 +5,7 @@ import { TextArea } from "carbon-components-react";
 import { Redirect } from "react-router-dom";
 import ButtonLoading from "../../components/ButtonLoading";
 import ButtonOutline from "../../components/ButtonOutline";
+import { getToken } from "../../utils/token";
 import "./index.scss";
 
 class Detail extends React.Component {
@@ -76,9 +77,10 @@ class Detail extends React.Component {
   };
   stopVideo = () => {
     this.player.stopVideo();
-    // if (this.isComponentMounted) {
-    //   alert("You have watched 10s");
-    // }
+    const {token} = getToken()
+    if (this.isComponentMounted && token) {
+      alert("Bạn đã xem đủ 10 giây, bạn nhận được 100 CXC")
+    }
   };
 
   render() {
