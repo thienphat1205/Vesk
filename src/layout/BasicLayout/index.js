@@ -56,7 +56,6 @@ class BasicLayout extends Component {
   render() {
     const { children, history, expiredToken, widthMenu } = this.props;
     const classNameMenu = this.renderClassNameMenu(widthMenu);
-    console.log("className Panel:", classNameMenu);
     // const { token } = getToken();
     // if (!token) {
     //   return <Redirect to="/signin" />;
