@@ -28,14 +28,34 @@ class BasicLayout extends Component {
 
   handleMenu = () => {
     const { widthMenu, setDataUserReducer } = this.props;
+    let checkStateMenu;
+    if (widthMenu === "firstRender") {
+      checkStateMenu = false;
+    } else {
+      checkStateMenu = !widthMenu;
+    }
     setDataUserReducer({
-      widthMenu: !widthMenu
+      widthMenu: checkStateMenu
     });
+  };
+
+  renderClassNameMenu = stateMenu => {
+    let className;
+    if (stateMenu === "firstRender") {
+      className = "defaultLeftPanel";
+    }
+    if (stateMenu === false) {
+      className = "closeLeftPanel";
+    }
+    if (stateMenu === true) {
+      className = "openLeftPanel";
+    }
+    return className;
   };
 
   render() {
     const { children, history, expiredToken, widthMenu } = this.props;
-    const widthMenuLeft = widthMenu ? "225px" : "90px";
+    const classNameMenu = this.renderClassNameMenu(widthMenu);
     // const { token } = getToken();
     // if (!token) {
     //   return <Redirect to="/signin" />;
@@ -50,33 +70,29 @@ class BasicLayout extends Component {
             handleMenu={this.handleMenu}
           />
           <div className="body">
-            <div
-              className="leftPanel"
-              style={{ width: widthMenuLeft, minWidth: widthMenuLeft }}
-            >
-              <div className="menu" style={{ width: widthMenuLeft }}>
+            <div className={classNameMenu}>
+              <div className={`${classNameMenu}__menu`}>
                 <NavLink
                   exact
-                  activeClassName="leftPanel__itemMenu--active"
+                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
                   to="/"
-                  className="leftPanel__itemMenu"
-                  style={{ widthMenuLeft }}
+                  className={`${classNameMenu}__menu__itemMenu`}
                 >
                   Home
                 </NavLink>
 
                 <NavLink
-                  activeClassName="leftPanel__itemMenu--active"
+                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
                   to="/users"
-                  className="leftPanel__itemMenu"
+                  className={`${classNameMenu}__menu__itemMenu`}
                 >
                   Users
                 </NavLink>
 
                 <NavLink
-                  activeClassName="leftPanel__itemMenu--active"
+                  activeClassName={`${classNameMenu}__menu__itemMenu--active`}
                   to="/contact"
-                  className="leftPanel__itemMenu"
+                  className={`${classNameMenu}__menu__itemMenu`}
                 >
                   Contact
                 </NavLink>

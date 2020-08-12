@@ -12,34 +12,117 @@ $menuColor: #7d5a5a;
     flex-direction: row;
     height: auto;
     background-color: #fafafa;
-    .leftPanel {
+    .defaultLeftPanel {
       background: linear-gradient(135deg, #ff516b 0%, #826cfd 100%);
+      width: 225px;
       min-height: 95vh;
       z-index: 1000;
-      .menu {
+      &__menu {
         position: fixed;
         top: 3rem;
         left: 0;
-      }
-      &__itemMenu {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        color: white;
-        text-decoration: none;
-        padding: 1rem 1.5rem;
-        font-weight: 600;
-
-        &:hover {
-          opacity: 0.5;
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-        &--active {
+        &__itemMenu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
           color: white;
-          background-color: rgba(255, 255, 255, 0.2);
+          text-decoration: none;
+          padding: 1rem 1.5rem;
+          font-weight: 600;
+          width: 225px;
+          &:hover {
+            opacity: 0.5;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          &--active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
         }
       }
     }
+    .openLeftPanel {
+      background: linear-gradient(135deg, #ff516b 0%, #826cfd 100%);
+      width: 225px;
+      min-height: 95vh;
+      z-index: 1000;
+      animation-name: openLeftMenu;
+      animation-duration: 0.7s;
+      &__menu {
+        position: fixed;
+        top: 3rem;
+        left: 0;
+        &__itemMenu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: white;
+          text-decoration: none;
+          padding: 1rem 1.5rem;
+          font-weight: 600;
+          width: 225px;
+          &:hover {
+            opacity: 0.5;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          &--active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+      @keyframes openLeftMenu {
+        from {
+          width: 90px;
+        }
+        to {
+          width: 225px;
+        }
+      }
+    }
+
+    .closeLeftPanel {
+      background: linear-gradient(135deg, #ff516b 0%, #826cfd 100%);
+      width: 90px;
+      min-height: 95vh;
+      z-index: 1000;
+      animation-name: closeLeftMenu;
+      animation-duration: 0.7s;
+      &__menu {
+        position: fixed;
+        top: 3rem;
+        left: 0;
+        &__itemMenu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: white;
+          text-decoration: none;
+          padding: 1rem 1.5rem;
+          font-weight: 600;
+          width: 90px;
+          animation-name: closeLeftMenu;
+          animation-duration: 0.7s;
+          &:hover {
+            opacity: 0.5;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          &--active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+      @keyframes closeLeftMenu {
+        from {
+          width: 225px;
+        }
+        to {
+          width: 90px;
+        }
+      }
+    }
+
     .content {
       min-height: 95vh;
       width: 100%;
